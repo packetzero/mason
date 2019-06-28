@@ -24,15 +24,16 @@ function mason_compile {
         --disable-debug \
         --with-internal-glib \
         --disable-dependency-tracking \
-        --disable-host-tool \
         --with-pc-path=${MASON_PREFIX}/lib/pkgconfig
     make -j${MASON_CONCURRENCY}
+    #make check
     make install
 
     # append aclocal dirlist
 
-    F="${MASON_PREFIX}/../../share/aclocal/dirlist"
-    echo "${MASON_PREFIX}/share/aclocal/dirlist" >> $F
+    F="${MASON_PREFIX}/share/aclocal/dirlist"
+    echo "${MASON_PREFIX}/share/aclocal" >> $F
+    echo "${MASON_ROOT}/.link/share/aclocal" >> $F
 }
 
 function mason_clean {
